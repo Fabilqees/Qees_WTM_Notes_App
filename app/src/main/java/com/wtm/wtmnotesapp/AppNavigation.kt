@@ -1,11 +1,11 @@
 package com.wtm.wtmnotesapp
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.wtm.wtmnotesapp.screens.AddNoteScreen
+import com.wtm.wtmnotesapp.screens.EditNoteScreen
 import com.wtm.wtmnotesapp.screens.NoteDetailsScreen
 import com.wtm.wtmnotesapp.screens.NoteListScreen
 
@@ -30,13 +30,21 @@ fun AppNavigation(){
                 noteId = it.arguments!!.getString("noteId")!!
             )
         }
+        composable("edit-note/{noteId}") {
+            EditNoteScreen(
+                navController = navController,
+                id = it.arguments!!.getString("noteId")!!)
+        }
     }
 }
 
 object Routes{
     val NoteListRoute = "note-list"
     val AddNoteRoute = "add-note"
-    fun NoteDetails(noteId: String): String{
+    fun noteDetails(noteId: String): String{
         return "note-details/$noteId"
+    }
+    fun editNoteRoute(noteId: String): String {
+        return "edit-note/$noteId"
     }
 }

@@ -45,6 +45,7 @@ fun NoteListScreen(navController: NavController){
     val nViewModel: NoteViewModel = viewModel()
     val listOfNotes by nViewModel.getAllNotes().observeAsState(emptyList())
 
+
     Scaffold(
         topBar = {
             TopAppBar(

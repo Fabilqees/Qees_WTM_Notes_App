@@ -1,5 +1,6 @@
 package com.wtm.wtmnotesapp.components
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,7 +23,7 @@ fun NoteItem(note: Note, navController: NavController){
             .fillMaxWidth()
             .padding(8.dp)
             .clickable {
-                navController.navigate(Routes.NoteDetails(note.id.toString()))
+                navController.navigate(Routes.noteDetails(note.id.toString()))
             }
     ) {
         Column(
@@ -32,9 +33,13 @@ fun NoteItem(note: Note, navController: NavController){
         ){
             Text(
                 text=note.title,
-                fontWeight = FontWeight.Black
+                fontWeight = FontWeight.Black,
+                maxLines = 3
             )
-            Text(text=note.content)
+            Text(
+                text=note.content,
+                maxLines = 3
+            )
         }
     }
 }

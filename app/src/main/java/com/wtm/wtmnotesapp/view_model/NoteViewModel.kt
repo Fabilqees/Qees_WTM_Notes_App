@@ -21,7 +21,7 @@ class NoteViewModel(val applicationn: Application) : AndroidViewModel(applicatio
      private var db = DatabaseConfig.getInstance(applicationn)
      fun saveNote(title: String, content: String){
           if(title.isNullOrEmpty() || content.isNullOrEmpty())return
-         //Creating a Note instance
+          //Creating a Note instance
           val note = Note(
                title = title,
                content = content
@@ -44,6 +44,12 @@ class NoteViewModel(val applicationn: Application) : AndroidViewModel(applicatio
      fun deleteNote(note: Note){
           viewModelScope.launch {
                db.noteDao().deleteNote(note)
+          }
+     }
+
+     fun updateNote(note: Note){
+          viewModelScope.launch {
+               db.noteDao().updateNote(note)
           }
      }
 }
